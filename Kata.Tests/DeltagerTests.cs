@@ -6,23 +6,9 @@ namespace Kata.Tests
 {
     public class ParticipantsTests
     {
-        //[Fact]
-        //public void ParticipantsValid()
-        //{
-        //    // Arrange
-        //    var sut = new Participant();
-        //    sut.City = "City";
-        //    sut.Country = "Country";
-        //    sut.Name = "Name";
-        //    sut.RegistrationNumber = "1";
-        //    sut.TelephoneNumber = 80808080;
-        //    sut.ZipCode = 9999;
 
-        //    // Act
-        //    // Assert
-            
-        //}
         [Fact]
+        [Trait("Category", "City")]
         public void ParticipantsCitySymbols()
         {
             // Arrange
@@ -37,6 +23,7 @@ namespace Kata.Tests
         }
 
         [Fact]
+        [Trait("Category", "Name")]
         public void ParticipantsNameThrowsExceptionIfNameIsNull()
         {
             //Arrange
@@ -46,6 +33,7 @@ namespace Kata.Tests
             Assert.Throws<ArgumentException>(() => sut.Name = positiveResult);
         }
         [Fact]
+        [Trait("Category", "Name")]
         public void ParticipantsNameThrowsExceptionIfNameIsEmpty()
         {
             //Arrange
@@ -57,6 +45,7 @@ namespace Kata.Tests
         }
         
         [Fact]
+        [Trait("Category", "Name")]
         public void ParticipantsNameThrowsExceptionIfNameIsSpecialCharacter()
         {
             //Arrange
@@ -66,18 +55,19 @@ namespace Kata.Tests
             Assert.Throws<ArgumentException>(() => sut.Name = positiveResult);
         }
         [Fact]
+        [Trait("Category", "Name")]
         public void ParticipantsNameWithNummericIsNotValid()
         {
             //Arrange
             var sut = new Participant();
             string positiveResult = "9";
-            // Act
-            //sut.Name = positiveResult;
 
-            // Assert
+
+            // Act & // Assert
             Assert.Throws<ArgumentException>(() => sut.Name = positiveResult);
         }
         [Fact]
+        [Trait("Category","Name")]
         public void ParticipantsNameWithAlphaCharicIsValid()
         {
             //Arrange
