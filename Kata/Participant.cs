@@ -61,14 +61,12 @@ namespace Kata
         public string Name
         {
             get { return name; }
-            set {if (string.IsNullOrEmpty(value))
-                {
-                    throw new ArgumentException("Name is null or empty");
-                }
-                else
-                {
-                    name = value;
-                }
+            set {
+            ParticipantNameValidation(value);
+            name = value;
+                    
+                    
+                
 
             }
         }
@@ -85,6 +83,25 @@ namespace Kata
                 }
             }
             return true;
+        }
+
+        private void ParticipantNameValidation(string name)
+        {
+            if (string.IsNullOrEmpty(name))
+            {
+                throw new ArgumentException("Name is null or empty");
+            }
+
+            string approvedLetters = "abcdefghijklmnopqrstuvwxzæøå";
+
+            foreach (char c in name.ToLower())
+            {
+                if (!approvedLetters.Contains(c))
+                {
+                    throw new ArgumentException("navn ikke validt");
+                }
+            }
+           
         }
 
     }

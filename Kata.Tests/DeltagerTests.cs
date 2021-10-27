@@ -66,16 +66,16 @@ namespace Kata.Tests
             Assert.Throws<ArgumentException>(() => sut.Name = positiveResult);
         }
         [Fact]
-        public void ParticipantsNameWithNummericIsValid()
+        public void ParticipantsNameWithNummericIsNotValid()
         {
             //Arrange
             var sut = new Participant();
             string positiveResult = "9";
             // Act
-            sut.Name = positiveResult;
+            //sut.Name = positiveResult;
 
             // Assert
-            sut.Name.Should().Be(positiveResult);
+            Assert.Throws<ArgumentException>(() => sut.Name = positiveResult);
         }
         [Fact]
         public void ParticipantsNameWithAlphaCharicIsValid()
