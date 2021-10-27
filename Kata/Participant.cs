@@ -1,4 +1,7 @@
-﻿namespace Kata
+﻿using System;
+using System.Linq;
+
+namespace Kata
 {
     public class Participant
     {
@@ -26,7 +29,18 @@
         public string City
         {
             get { return city; }
-            set { city = value; }
+            set { 
+              
+                if (CityNameValidation( value))
+                {
+                    city = value;
+                }
+                else
+                {
+                    throw new ArgumentException("City name not valid");
+                }
+             
+            }
         }
 
 
@@ -48,6 +62,20 @@
         {
             get { return name; }
             set { name = value; }
+        }
+
+        private bool CityNameValidation(string cityName)
+        {
+            string approvedLetters = "abcdefghijklmnopqrstuvwxzæøå";
+            
+            foreach (char c in cityName.ToLower())
+            {
+               if (!approvedLetters.Contains(c))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
     }
