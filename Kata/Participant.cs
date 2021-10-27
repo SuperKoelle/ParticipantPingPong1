@@ -31,7 +31,7 @@ namespace Kata
             get { return city; }
             set { 
               
-                if (CityNameValidation( value))
+                if (!CityNameValidation( value))
                 {
                     city = value;
                 }
