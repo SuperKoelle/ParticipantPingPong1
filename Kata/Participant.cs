@@ -61,7 +61,16 @@ namespace Kata
         public string Name
         {
             get { return name; }
-            set { name = value; }
+            set {if (string.IsNullOrEmpty(value))
+                {
+                    throw new ArgumentException("Name is null or empty");
+                }
+                else
+                {
+                    name = value;
+                }
+
+            }
         }
 
         private bool CityNameValidation(string cityName)
