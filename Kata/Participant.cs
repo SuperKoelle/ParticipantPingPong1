@@ -64,10 +64,6 @@ namespace Kata
             set {
             ParticipantNameValidation(value);
             name = value;
-                    
-                    
-                
-
             }
         }
 
@@ -92,7 +88,7 @@ namespace Kata
                 throw new ArgumentException("Name is null or empty");
             }
 
-            string approvedLetters = "abcdefghijklmnopqrstuvwxzæøå";
+            string approvedLetters = "abcdefghijklmnopqrstuvwxzæøå- ";
 
             foreach (char c in name.ToLower())
             {
