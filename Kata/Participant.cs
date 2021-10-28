@@ -5,100 +5,63 @@ namespace Kata
 {
     public class Participant
     {
-        private string name;
-        private int telephoneNumber;
-        private int zipCode;
         private string city;
-        private string country;
-        private string registreringsNumber;
+        private string name;
 
-        public string RegistrationNumber
-        {
-            get { return registreringsNumber; }
-            set { registreringsNumber = value; }
-        }
+        public string RegistrationNumber { get; set; }
 
 
-        public string Country
-        {
-            get { return country; }
-            set { country = value; }
-        }
+        public string Country { get; set; }
 
 
         public string City
         {
-            get { return city; }
-            set { 
-              
-                if (!CityNameValidation( value))
-                {
+            get => city;
+            set
+            {
+                if (!CityNameValidation(value))
                     city = value;
-                }
                 else
-                {
                     throw new ArgumentException("City name not valid");
-                }
-             
             }
         }
 
 
-        public int ZipCode
-        {
-            get { return zipCode; }
-            set { zipCode = value; }
-        }
+        public int ZipCode { get; set; }
 
 
-        public int TelephoneNumber
-        {
-            get { return telephoneNumber; }
-            set { telephoneNumber = value; }
-        }
+        public string TelephoneNumber { get; set; }
 
 
         public string Name
         {
-            get { return name; }
-            set {
-            ParticipantNameValidation(value);
-            name = value;
+            get => name;
+            set
+            {
+                ParticipantNameValidation(value);
+                name = value;
             }
         }
 
         private bool CityNameValidation(string cityName)
         {
-            string approvedLetters = "abcdefghijklmnopqrstuvwxzæøå";
-            
-            foreach (char c in cityName.ToLower())
-            {
-               if (!approvedLetters.Contains(c))
-                {
+            var approvedLetters = "abcdefghijklmnopqrstuvwxzæøå";
+
+            foreach (var c in cityName.ToLower())
+                if (!approvedLetters.Contains(c))
                     return false;
-                }
-            }
             return true;
         }
 
         private void ParticipantNameValidation(string name)
         {
-            if (string.IsNullOrEmpty(name))
-            {
-                throw new ArgumentException("Name is null or empty");
-            }
+            if (string.IsNullOrEmpty(name)) throw new ArgumentException("Name is null or empty");
 
-            string approvedLetters = "abcdefghijklmnopqrstuvwxzæøå- ";
+            var approvedLetters = "abcdefghijklmnopqrstuvwxzæøå- ";
 
-            foreach (char c in name.ToLower())
-            {
+            foreach (var c in name.ToLower())
                 if (!approvedLetters.Contains(c))
-                {
                     throw new ArgumentException("navn ikke validt");
-                }
-            }
-           
         }
-
     }
 }
