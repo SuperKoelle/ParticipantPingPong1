@@ -7,11 +7,15 @@ namespace Kata
     {
         private string city;
         private string name;
+        private string telephoneNumber;
+        private string country;
 
         public string RegistrationNumber { get; set; }
 
 
-        public string Country { get; set; }
+        public string Country
+        { get;set;}
+
 
 
         public string City
@@ -30,7 +34,15 @@ namespace Kata
         public int ZipCode { get; set; }
 
 
-        public string TelephoneNumber { get; set; }
+        public string TelephoneNumber 
+        {
+            get => telephoneNumber;
+
+            set
+            {
+                ValidateTelephoneNumber(value);
+            } 
+        }
 
 
         public string Name
@@ -62,6 +74,37 @@ namespace Kata
             foreach (var c in name.ToLower())
                 if (!approvedLetters.Contains(c))
                     throw new ArgumentException("navn ikke validt");
+        }
+ 
+    
+        private void ValidateTelephoneNumber(string input)
+        {
+
+
+            if (Country=="Denmark")
+            {
+               string correctFormattedNumber= ReformatTelephoneNumber(input);
+                ValidatePhoneNumberLength(correctFormattedNumber);
+            }
+            else
+            {
+                telephoneNumber = input;
+            }
+
+        }
+
+        private string ReformatTelephoneNumber(string input)
+        {
+            return input.Replace(" ", "");
+        }
+
+        private void ValidatePhoneNumberLength(string input)
+        {
+            if (input.Length!=8)
+            {
+                throw new ArgumentException();
+            }
+            telephoneNumber = input;
         }
     }
 }
